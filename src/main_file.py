@@ -4,10 +4,8 @@ import requests
 import json
 from geopy.geocoders import Nominatim
 import pandas as pd
-import ast
 from pandas import json_normalize
 from shapely.geometry import LineString
-import math 
 import geopandas as gpd
 import seaborn as sns
 import os
@@ -45,7 +43,7 @@ def overpassQuery(area_id, waterway_type1, waterway_type2):
     '''
     overpass_url = "http://overpass-api.de/api/interpreter"
     overpass_query = """
-    [out:json];
+    [out:json][timeout:1000];
         area(%s)->.searchArea;
         (
         way["waterway"= %s](area.searchArea);
